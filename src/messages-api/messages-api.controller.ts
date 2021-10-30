@@ -17,6 +17,7 @@ export class MessagesApiController {
 
   @Post()
   create(@Body() createMessagesApiDto: CreateMessagesApiDto) {
+    console.log(createMessagesApiDto);
     return this.messagesApiService.create(createMessagesApiDto);
   }
 
