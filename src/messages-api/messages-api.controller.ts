@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { MessagesApiService } from './messages-api.service';
 import { CreateMessagesApiDto } from './dto/create-messages-api.dto';
 import { UpdateMessagesApiDto } from './dto/update-messages-api.dto';
@@ -23,7 +31,10 @@ export class MessagesApiController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMessagesApiDto: UpdateMessagesApiDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateMessagesApiDto: UpdateMessagesApiDto,
+  ) {
     return this.messagesApiService.update(+id, updateMessagesApiDto);
   }
 

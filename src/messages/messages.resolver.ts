@@ -9,7 +9,9 @@ export class MessagesResolver {
   constructor(private readonly messagesService: MessagesService) {}
 
   @Mutation(() => Message)
-  createMessage(@Args('createMessageInput') createMessageInput: CreateMessageInput,) {
+  createMessage(
+    @Args('createMessageInput') createMessageInput: CreateMessageInput,
+  ) {
     return this.messagesService.create(createMessageInput);
   }
 

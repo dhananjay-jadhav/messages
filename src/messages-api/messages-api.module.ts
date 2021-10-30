@@ -4,6 +4,6 @@ import { MessagesApiController } from './messages-api.controller';
 
 @Module({
   controllers: [MessagesApiController],
-  providers: [MessagesApiService]
+  providers: [MessagesApiService],
 })
 export class MessagesApiModule {}
