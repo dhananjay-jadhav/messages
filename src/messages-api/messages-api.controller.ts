@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  NotFoundException,
 } from '@nestjs/common';
 import { MessagesApiService } from './messages-api.service';
 import { CreateMessagesApiDto } from './dto/create-messages-api.dto';
@@ -27,8 +28,12 @@ export class MessagesApiController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.messagesApiService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const message = await this.messagesApiService.findOne(id);
+    if (!message) {
+      throw new NotFoundException('Messages not found with Id:', id);
+    }
+    return message;
   }
 
   @Patch(':id')
@@ -36,11 +41,11 @@ export class MessagesApiController {
     @Param('id') id: string,
     @Body() updateMessagesApiDto: UpdateMessagesApiDto,
   ) {
-    return this.messagesApiService.update(+id, updateMessagesApiDto);
+    return this.messagesApiService.update(id, updateMessagesApiDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.messagesApiService.remove(+id);
+    return this.messagesApiService.remove(id);
   }
 }
